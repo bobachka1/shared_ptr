@@ -36,7 +36,8 @@ public:
 	shared_ptr& operator=(const shared_ptr& other)
 	{
 		if (this == &other) return *this;
-		other.swap(*this);
+		data_ = other.data_;
+		refCount = other.refCount;
 		return *this;
 	}
 	shared_ptr(shared_ptr&& ptr) noexcept : data_(std::move(ptr.data_)), refCount(std::move(ptr.refCount)) { ptr.reset(); }
